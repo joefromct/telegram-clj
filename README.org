@@ -1,0 +1,49 @@
+* Telegram Problem:
+(from [[https://en.wikipedia.org/wiki/Flow-based_programming#%2522Telegram_Problem%2522][wikipedia]])
+
+#+BEGIN_QUOTE
+ Write a program which accepts lines of text and generates output
+ lines containing as many words as possible, where the number of characters in
+ each line does not exceed a certain length. The words may not be split and we
+ assume no word is longer than the size of the output lines. This is analogous
+ to the word-wrapping problem in text editors.
+
+ In conventional logic, the programmer rapidly discovers that neither the input
+ nor the output structures can be used to drive the call hierarchy of control
+ flow. In FBP, on the other hand, the problem description itself suggests a
+ solution.
+#+END_QUOTE
+
+
+** data used
+
+[[https://en.wikipedia.org/wiki/Lorem_ipsum][Lorem_ipsum]] is the input "paragraph" to be wrapped.  Shown in [[lorem-ipsum.txt]].
+
+I also have an =answer= variable (string) that shows what the word wrapped text
+should look like, wrapped at 80. I just did this in emacs. This is in the
+[[answer.txt]] file.
+
+** simple util fn's
+
+See [[src/telegraph_clj/utils.clj]]
+
+
+** approaches
+
+The tricky bit to this program is in re-composing the split data and deciding
+exactly how to manage state.
+
+*** recursive-telegram.clj
+[[src/telegraph_clj/recursive_telegram.clj::(ns telegraph-clj.recursive-telegram][recursive-telegram.clj]] retains state in its call stack, by recursively calling
+itself and cons'ing =current-lines=.
+
+The recursive function also handles the appending of the last parial line.
+
+*** closure_telegram.clj
+[[src/telegraph_clj/closure_telegram.clj::(ns telegraph-clj.closure-telegram]]
+
+The closure approach shares the state in the enclosing let binding
+as the =line= atom.
+
+*** queue
+TODO
