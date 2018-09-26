@@ -34,13 +34,13 @@ The tricky bit to this program is in re-composing the split data and deciding
 exactly how to manage state.
 
 *** recursive-telegram.clj
-[[src/telegraph_clj/recursive_telegram.clj::(ns telegraph-clj.recursive-telegram][recursive-telegram.clj]] retains state in its call stack, by recursively calling
+[[src/telegraph_clj/recursive_telegram.clj][recursive-telegram.clj]] retains state in its call stack, by recursively calling
 itself and cons'ing =current-lines=.
 
 The recursive function also handles the appending of the last parial line.
 
 *** closure_telegram.clj
-[[src/telegraph_clj/closure_telegram.clj::(ns telegraph-clj.closure-telegram]]
+[[src/telegraph_clj/closure_telegram.clj]]
 
 The closure approach shares the state in the enclosing let binding
 as the =line= atom.
